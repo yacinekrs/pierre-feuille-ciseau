@@ -15,11 +15,12 @@ const getPlayerChoise = function () {
     selection !== "CISEAU"
   ) {
     alert("le choix est invalide, On choisit Pierre pour vous");
-    return "PIERRE";
+    return ROCK;
   }
   return selection;
 };
-const computerChoise = function () {
+// fonction flechée (on enleve le mot cle function et on remplace par => )
+const computerChoise = () => {
   let randomValue = Math.random();
   if (randomValue < 0.34) {
     return ROCK;
@@ -30,7 +31,7 @@ const computerChoise = function () {
   }
 };
 // c est une fonction de flechée et elle remplace le fonction juste en bas (commenté)
-const getWinner = (PChoise, CChoise) =>
+const getWinner = (CChoise, PChoise) =>
   // c est une expression ternaire qui remplace les if else
   PChoise === CChoise
     ? RESULT_DRAW
@@ -64,6 +65,15 @@ startGameBtn.addEventListener("click", function () {
   console.log("vous : ", PlayerSelection);
   const ComputerSelection = computerChoise();
   console.log("ordi : ", ComputerSelection);
-  const reslt = getWinner(PlayerSelection, ComputerSelection);
-  console.log(reslt);
+  const reslt = getWinner(ComputerSelection, PlayerSelection);
+  let message;
+  if (reslt === RESULT_DRAW) {
+    message = `vous avez choisi ${PlayerSelection}, et l'IA a choisi ${ComputerSelection}, donc c'est un match nul `;
+  } else if (message === RESULT_PL_WIN) {
+    message = `vous avez choisi ${PlayerSelection}, et l'IA a choisi ${ComputerSelection}, donc c'est un match nul `;
+  } else {
+    message = `vous avez choisi ${PlayerSelection}, et l'IA a choisi ${ComputerSelection}, donc c'est un match nul `;
+  }
+  alert(message);
+  GameisRunning = false;
 });
